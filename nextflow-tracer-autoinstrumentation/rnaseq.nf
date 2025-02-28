@@ -1,6 +1,9 @@
 nextflow.enable.dsl=2
 
+// Process Definitions with publishDir
+
 process Bowtie2Index {
+    publishDir "${params.work_dir}/results/bowtie2/index", mode: 'copy'
     input:
     path genome_fa
 
@@ -16,6 +19,7 @@ process Bowtie2Index {
 
 process Bowtie2MapCONTROL {
     tag "$sample_id1"
+    publishDir "${params.work_dir}/results/bowtie2", mode: 'copy'
     input:
     path(control1)
     path(control2) 
@@ -33,6 +37,7 @@ process Bowtie2MapCONTROL {
 
 process Bowtie2MapTEST {
     tag "$sample_id2"
+    publishDir "${params.work_dir}/results/bowtie2", mode: 'copy'
     input:
     path(test1)
     path(test2)
@@ -49,6 +54,7 @@ process Bowtie2MapTEST {
 }
 
 process STARIndex {
+    publishDir "${params.work_dir}/results/star/index", mode: 'copy'
     input:
     path genome_fa
     path genome_gtf
@@ -64,6 +70,7 @@ process STARIndex {
 
 process STARMapCONTROL {
     tag "$sample_id1"
+    publishDir "${params.work_dir}/results/star", mode: 'copy'
     input:
     path(control1)
     path(control2)
@@ -81,6 +88,7 @@ process STARMapCONTROL {
 
 process STARMapTEST {
     tag "$sample_id2"
+    publishDir "${params.work_dir}/results/star", mode: 'copy'
     input:
     path(test1)
     path(test2)
@@ -98,6 +106,7 @@ process STARMapTEST {
 
 process SamToFastaCONTROL {
     tag "$sample_id1"
+    publishDir "${params.work_dir}/results/samtools", mode: 'copy'
     input:
     path("control.sam")
 
@@ -112,6 +121,7 @@ process SamToFastaCONTROL {
 
 process SamToFastaTEST {
     tag "$sample_id2"
+    publishDir "${params.work_dir}/results/samtools", mode: 'copy'
     input:
     path ("test.sam")
 
@@ -126,6 +136,7 @@ process SamToFastaTEST {
 
 process KallistoIndexCONTROL {
     tag "$sample_id1"
+    publishDir "${params.work_dir}/results/kallisto/index", mode: 'copy'
     input:
     path("control.fa")
 
@@ -140,6 +151,7 @@ process KallistoIndexCONTROL {
 
 process KallistoIndexTEST {
     tag "$sample_id2"
+    publishDir "${params.work_dir}/results/kallisto/index", mode: 'copy'
     input:
     path ("test.fa")
 
@@ -154,6 +166,7 @@ process KallistoIndexTEST {
 
 process KallistoQuantCONTROL {
     tag "$sample_id1"
+    publishDir "${params.work_dir}/results/kallisto", mode: 'copy'
     input:
     path(control1)
     path(control2)
@@ -170,6 +183,7 @@ process KallistoQuantCONTROL {
 
 process KallistoQuantTEST {
     tag "$sample_id2"
+    publishDir "${params.work_dir}/results/kallisto", mode: 'copy'
     input:
     path(test1)
     path(test2)
@@ -185,6 +199,7 @@ process KallistoQuantTEST {
 }
 
 process SalmonIndex {
+    publishDir "${params.work_dir}/results/salmon/index", mode: 'copy'
     input:
     path genome_fa
 
@@ -199,6 +214,7 @@ process SalmonIndex {
 
 process SalmonQuantCONTROL {
     tag "$sample_id1"
+    publishDir "${params.work_dir}/results/salmon", mode: 'copy'
     input:
     path(control1)
     path(control2)
@@ -215,6 +231,7 @@ process SalmonQuantCONTROL {
 
 process SalmonQuantTEST {
     tag "$sample_id2"
+    publishDir "${params.work_dir}/results/salmon", mode: 'copy'
     input:
     path(test1)
     path(test2)
@@ -230,6 +247,7 @@ process SalmonQuantTEST {
 }
 
 process Hisat2Index {
+    publishDir "${params.work_dir}/results/hisat2/index", mode: 'copy'
     input:
     path genome_fa
 
@@ -244,6 +262,7 @@ process Hisat2Index {
 
 process Hisat2AlignCONTROL {
     tag "$sample_id1"
+    publishDir "${params.work_dir}/results/hisat2", mode: 'copy'
     input:
     path(control1)
     path(control2)
@@ -260,6 +279,7 @@ process Hisat2AlignCONTROL {
 
 process Hisat2AlignTEST {
     tag "$sample_id2"
+    publishDir "${params.work_dir}/results/hisat2", mode: 'copy'
     input:
     path(test1)
     path(test2)
@@ -275,6 +295,7 @@ process Hisat2AlignTEST {
 }
 
 process BWAIndex {
+    publishDir "${params.work_dir}/results/bwa/index", mode: 'copy'
     input:
     path genome_fa
 
@@ -293,6 +314,7 @@ process BWAIndex {
 
 process BWAAlignCONTROL {
     tag "$sample_id1"
+    publishDir "${params.work_dir}/results/bwa", mode: 'copy'
     input:
     path(control1)
     path(control2)
@@ -313,6 +335,7 @@ process BWAAlignCONTROL {
 
 process BWAAlignTEST {
     tag "$sample_id2"
+    publishDir "${params.work_dir}/results/bwa", mode: 'copy'
     input:
     path(test1)
     path(test2)
@@ -333,6 +356,7 @@ process BWAAlignTEST {
 
 process SamToBamCONTROL {
     tag "$sample_id1"
+    publishDir "${params.work_dir}/results/samtools", mode: 'copy'
     input:
     path("control.sam")
 
@@ -347,6 +371,7 @@ process SamToBamCONTROL {
 
 process SamToBamTEST {
     tag "$sample_id2"
+    publishDir "${params.work_dir}/results/samtools", mode: 'copy'
     input:
     path("test.sam")
 
@@ -361,6 +386,7 @@ process SamToBamTEST {
 
 process BamSortedCONTROL {
     tag "$sample_id1"
+    publishDir "${params.work_dir}/results/samtools", mode: 'copy'
     input:
     path("control.bam")
 
@@ -375,6 +401,7 @@ process BamSortedCONTROL {
 
 process BamSortedTEST {
     tag "$sample_id2"
+    publishDir "${params.work_dir}/results/samtools", mode: 'copy'
     input:
     path("test.bam")
 
@@ -389,6 +416,7 @@ process BamSortedTEST {
 
 process IndexCONTROL {
     tag "$sample_id1"
+    publishDir "${params.work_dir}/results/samtools", mode: 'copy'
     input:
     path("control.sorted.bam")
 
@@ -403,6 +431,7 @@ process IndexCONTROL {
 
 process IndexTEST {
     tag "$sample_id2"
+    publishDir "${params.work_dir}/results/samtools", mode: 'copy'
     input:
     path("test.sorted.bam")
 
@@ -417,6 +446,7 @@ process IndexTEST {
 
 process FeatureCountsCONTROL {
     tag "$sample_id1"
+    publishDir "${params.work_dir}/results/featurecounts", mode: 'copy'
     input:
     path("control.sorted.bam")
     path(genome_gtf)
@@ -426,12 +456,14 @@ process FeatureCountsCONTROL {
 
     script:
     """
-    featureCounts -p --countReadPairs -B -C -T 4 -a $genome_gtf -o control_counts control.sorted.bam
+    echo "Using annotation file: $genome_gtf"
+    featureCounts -p -B -C -T 4 -a $genome_gtf -o control_counts control.sorted.bam
     """
 }
 
 process FeatureCountsTEST {
     tag "$sample_id2"
+    publishDir "${params.work_dir}/results/featurecounts", mode: 'copy'
     input:
     path("test.sorted.bam")
     path(genome_gtf)
@@ -441,24 +473,27 @@ process FeatureCountsTEST {
 
     script:
     """
-    featureCounts -p --countReadPairs -B -C -T 4 -a $genome_gtf -o test_counts test.sorted.bam
+    echo "Using annotation file: $genome_gtf"
+    featureCounts -p -B -C -T 4 -a $genome_gtf -o test_counts test.sorted.bam
     """
 }
 
 process MultiQC {
+    publishDir "${params.work_dir}/results/multiqc", mode: 'copy'
     input:
     path("*")
 
     output:
-    path "."
+    path "multiqc_report.html"
 
     script:
     """
-    multiqc .
+    multiqc . -o multiqc_report.html
     """
 }
 
 process BamSummary {
+    publishDir "${params.work_dir}/results/deeptools", mode: 'copy'
     input:
     path("control.sorted.bam")
     path("test.sorted.bam")
@@ -475,6 +510,7 @@ process BamSummary {
 }
 
 process PCA {
+    publishDir "${params.work_dir}/results/deeptools", mode: 'copy'
     input:
     path "rnaseq.npz"
 
@@ -488,6 +524,7 @@ process PCA {
 }
 
 process Fingerprint {
+    publishDir "${params.work_dir}/results/deeptools", mode: 'copy'
     input:
     path("control.sorted.bam")
     path("test.sorted.bam")
@@ -504,6 +541,7 @@ process Fingerprint {
 }
 
 process BamCompare {
+    publishDir "${params.work_dir}/results/deeptools", mode: 'copy'
     input:
     path("control.sorted.bam")
     path("test.sorted.bam")
@@ -518,6 +556,8 @@ process BamCompare {
     bamCompare -b1 control.sorted.bam -b2 test.sorted.bam -o differential.bw -of bigwig
     """
 }
+
+// Workflow Definition
 
 workflow {
     params.control1 = "$projectDir/../data/control1_1.fq"
@@ -558,7 +598,6 @@ workflow {
     Channel
         .fromPath(params.gtf)
         .set { gtf2_ch }
-
 
     // Build Bowtie2 index
     bowtie2_index = Bowtie2Index(fasta_ch)
@@ -619,8 +658,25 @@ workflow {
     featurecounts_control = FeatureCountsCONTROL(samtools_sort_control, gtf_ch)
     featurecounts_test = FeatureCountsTEST(samtools_sort_test, gtf_ch)
 
+    // Collect all outputs for MultiQC
+    all_outputs = bowtie2_map_control.mix(
+        bowtie2_map_test,
+        star_map_control[0], star_map_control[1], // BAM and gene counts
+        star_map_test[0], star_map_test[1],
+        kallisto_quant_control,
+        kallisto_quant_test,
+        salmon_quant_control,
+        salmon_quant_test,
+        hisat2_align_control,
+        hisat2_align_test,
+        bwa_align_control,
+        bwa_align_test,
+        featurecounts_control,
+        featurecounts_test
+    ).collect()
+
     // Run MultiQC to summarize the results
-    multiqc = MultiQC(bowtie2_map_control)
+    multiqc = MultiQC(all_outputs)
 
     // Generate BAM summary
     bam_summary = BamSummary(samtools_sort_control, samtools_sort_test, samtools_index_control, samtools_index_test)
