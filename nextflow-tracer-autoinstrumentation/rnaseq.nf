@@ -145,7 +145,7 @@ process KallistoIndexCONTROL {
 
     script:
     """
-    kallisto index -t 4 -i control_index.idx control.fa
+    kallisto index -i control_index.idx control.fa
     """
 }
 
@@ -160,7 +160,7 @@ process KallistoIndexTEST {
 
     script:
     """
-    kallisto index -t 4 -i test_index.idx test.fa
+    kallisto index -i test_index.idx test.fa
     """
 }
 
